@@ -1,7 +1,31 @@
 {
-  "functions": {
-    "api/*.py": {
-      "runtime": "python@3.11"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "builds": [
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "*.js",
+      "use": "@vercel/node"
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/webhook.py"
+    },
+    {
+      "src": "/webhook",
+      "dest": "/webhook.py"
+    },
+    {
+      "src": "/health",
+      "dest": "/webhook.py"
+    }
+  ]
 }
